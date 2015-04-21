@@ -1,0 +1,25 @@
+--- dwm.c.bak	2015-04-20 19:07:51.633677500 +0100
++++ dwm.c	2015-04-21 17:33:23.171151302 +0100
+@@ -211,6 +211,7 @@ static void tagmon(const Arg *arg);
+ static void tile(Monitor *);
+ static void togglebar(const Arg *arg);
+ static void togglefloating(const Arg *arg);
++static void togglefullscreen(const Arg *arg);
+ static void toggletag(const Arg *arg);
+ static void toggleview(const Arg *arg);
+ static void unfocus(Client *c, Bool setfocus);
+@@ -1656,6 +1657,14 @@ togglefloating(const Arg *arg) {
+ }
+ 
+ void
++togglefullscreen(const Arg *arg) {
++    if (!selmon->sel)
++        return;
++
++    setfullscreen(selmon->sel, !selmon->sel->isfullscreen);
++}
++
++void
+ toggletag(const Arg *arg) {
+ 	unsigned int newtags;
+ 
